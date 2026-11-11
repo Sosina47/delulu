@@ -58,11 +58,13 @@ export async function readJsonBody(req: IncomingMessage & { body?: unknown }): P
 }
 
 export function sendJson(res: ApiResponse, statusCode: number, data: unknown): void {
-  if (typeof res.status === 'function' && typeof res.json === 'function') {
-    res.status(statusCode).json(data);
+  const status = res.status;
+  const json = res.json;
+  if (typeof status === 'function' && typeof json === 'function') {
+    status.call(res, statusCode);
+    json.call(res, data);
     return;
   }
-
   if (!res.headersSent) {
     res.statusCode = statusCode;
     res.setHeader('Content-Type', 'application/json');

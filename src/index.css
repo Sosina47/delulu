@@ -3,21 +3,43 @@
 @tailwind utilities;
 
 @layer base {
-  body {
-    background-color: #FAF7EE;
-    color: #1F2421;
-    font-family: 'Courier Prime', 'Courier New', monospace;
+  html {
+    -webkit-text-size-adjust: 100%;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  body {
+    background-color: #faf7ee;
+    background-image: radial-gradient(rgba(31, 36, 33, 0.055) 0.7px, transparent 0.7px);
+    background-size: 14px 14px;
+    color: #1f2421;
+    font-family: 'Courier Prime', 'Courier New', monospace;
+    min-height: 100vh;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: 'Bungee', Impact, sans-serif;
     letter-spacing: -0.02em;
+  }
+
+  ::selection {
+    background-color: #ff6b6b;
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 3px solid #b7094c;
+    outline-offset: 2px;
   }
 }
 
 /* Rubber stamp effect for police verdicts and badges */
 .stamp-badge {
-  font-family: 'Special Elite', monospace;
+  font-family: 'Bungee', Impact, sans-serif;
   display: inline-block;
   padding: 0.25rem 0.75rem;
   border: 3px solid currentColor;
@@ -27,3 +49,175 @@
   border-radius: 4px;
 }
 
+@layer utilities {
+  .animate-paper-in {
+    animation: paper-in 0.42s cubic-bezier(0.2, 0.8, 0.3, 1) both;
+  }
+
+  .animate-drawer-in {
+    animation: drawer-in 0.28s cubic-bezier(0.2, 0.8, 0.3, 1) both;
+  }
+
+  .report-paper {
+    animation:
+      paper-in 0.42s cubic-bezier(0.2, 0.8, 0.3, 1) both,
+      report-shake 0.42s ease-in-out 1.12s both;
+  }
+
+  .stamp-slam {
+    animation: stamp-slam 0.5s cubic-bezier(0.2, 1.5, 0.4, 1) both;
+  }
+
+  .reveal-item {
+    opacity: 0;
+    animation: reveal-up 0.42s ease-out both;
+  }
+
+  .pulse-ring {
+    animation: pulse-ring 2.2s ease-out infinite;
+  }
+
+  .pulse-ring-delay {
+    animation-delay: 0.7s;
+  }
+
+  .magnifier-wobble {
+    animation: magnifier-wobble 2.4s ease-in-out infinite;
+  }
+
+  .scan-line {
+    animation: scan-line 2.8s linear infinite;
+  }
+
+  .progress-indeterminate {
+    width: 38%;
+    animation: progress-indeterminate 1.5s ease-in-out infinite;
+  }
+}
+
+@keyframes paper-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px) rotate(-0.4deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(0);
+  }
+}
+
+@keyframes drawer-in {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes report-shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-5px) rotate(-0.3deg);
+  }
+  40% {
+    transform: translateX(5px) rotate(0.3deg);
+  }
+  60% {
+    transform: translateX(-3px);
+  }
+  80% {
+    transform: translateX(3px);
+  }
+}
+
+@keyframes stamp-slam {
+  0% {
+    opacity: 0;
+    transform: scale(2.4) rotate(-18deg);
+  }
+  65% {
+    opacity: 1;
+    transform: scale(0.9) rotate(-8deg);
+  }
+  82% {
+    transform: scale(1.06) rotate(-8deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(-8deg);
+  }
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.85);
+    opacity: 0.8;
+  }
+  70% {
+    transform: scale(1.25);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.25);
+    opacity: 0;
+  }
+}
+
+@keyframes magnifier-wobble {
+  0%,
+  100% {
+    transform: rotate(-5deg) translateY(0);
+  }
+  50% {
+    transform: rotate(5deg) translateY(-4px);
+  }
+}
+
+@keyframes scan-line {
+  0% {
+    top: -20%;
+  }
+  100% {
+    top: 110%;
+  }
+}
+
+@keyframes progress-indeterminate {
+  0% {
+    transform: translateX(-110%);
+  }
+  100% {
+    transform: translateX(320%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal-item {
+    opacity: 1;
+  }
+}

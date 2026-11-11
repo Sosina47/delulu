@@ -26,7 +26,7 @@ export default {
       fontFamily: {
         display: ['"Bungee"', 'Impact', 'sans-serif'],
         typewriter: ['"Courier Prime"', '"Courier New"', 'monospace'],
-        stamp: ['"Special Elite"', '"Courier New"', 'monospace'],
+        stamp: ['"Bungee"', 'Impact', 'sans-serif'],
       },
       boxShadow: {
         folder: '3px 4px 0px 0px rgba(31, 36, 33, 0.9)',

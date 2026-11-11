@@ -33,10 +33,12 @@ export function createFallbackReport(params: {
   caseDescription: string;
   category: Category;
   reason?: string;
+  caseId?: string;
+  createdAt?: string;
 }): InvestigationReport {
   const score = 65;
   const now = new Date();
-  const caseId = `DP-${now.getFullYear()}-${Math.floor(1000 + Math.random() * 9000)}`;
+  const caseId = params.caseId ?? `DP-${now.getFullYear()}-${Math.floor(1000 + Math.random() * 9000)}`;
 
   return {
     caseId,
@@ -78,7 +80,7 @@ export function createFallbackReport(params: {
       triggered: false,
     },
     fallback: true,
-    createdAt: now.toISOString(),
+    createdAt: params.createdAt ?? now.toISOString(),
   };
 }
 
