@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: #FAF7EE;
+    color: #1F2421;
+    font-family: 'Courier Prime', 'Courier New', monospace;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Bungee', Impact, sans-serif;
+    letter-spacing: -0.02em;
+  }
+}
+
+/* Rubber stamp effect for police verdicts and badges */
+.stamp-badge {
+  font-family: 'Special Elite', monospace;
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border: 3px solid currentColor;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  border-radius: 4px;
+}
+
